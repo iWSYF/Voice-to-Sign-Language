@@ -52,6 +52,11 @@ def home():
     # If the request method is GET (i.e., when the page is first loaded), pass None to the template
     return render_template('index.html', original_text=None, words=None)
 
+# for about.html page
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 # The main entry point of the script
 if __name__ == '__main__':
     # Initialize the Vosk model for speech recognition
