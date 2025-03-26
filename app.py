@@ -60,9 +60,11 @@ def about():
 # The main entry point of the script
 if __name__ == '__main__':
     # Initialize the Vosk model for speech recognition
-    model = Model(r"C:\Users\PC\Downloads\vosk-model-small-en-us-0.15")
+    model = Model(r"C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.42-gigaspeech")
       # Path to the Vosk model
       # C:\Users\PC\Downloads\vosk-model-small-en-us-0.15 - EYAD 
+      # C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.42-gigaspeech - Wail
+      
     recognizer = KaldiRecognizer(model, 44100)  # Initialize the recognizer with the model and sample rate (44100 Hz)
 
     # Initialize PyAudio for microphone input
