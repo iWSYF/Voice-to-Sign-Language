@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/main-logo.png') }}" />
     <title>Home</title>
-
-    <!-- CSS Files -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css.map') }}" />
@@ -15,7 +13,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" />
   </head>
   <body>
-    <!-- Start header -->
     <header id="header" class="header">
       <div class="container">
         <div class="row">
@@ -28,7 +25,7 @@
           <div class="col-lg-7 col-md-7 col-sm-12 col-12">
             <ul>
               <li><a href="{{ url_for('home') }}">Home</a></li>
-               <li><a href="{{ url_for('about') }}">About</a></li> 
+              <li><a href="{{ url_for('about') }}">About</a></li> 
             </ul>
           </div>
           <div class="col-lg-2 col-md-3 col-sm-12 col-12">
@@ -39,61 +36,56 @@
         </div>
       </div>
     </header>
-    <!-- End header -->
 
-    <!-- Start speechrecord -->
     <section id="speechrecord" class="speechrecord">
       <div class="container">
         <div class="uplogo">
           <img src="{{ url_for('static', filename='img/main-logo.png') }}" alt="" />
         </div>
+
         <div class="row">
           <div class="col-md">
             <div class="mainspeechbox">
               <h4>Speech to Text</h4>
-              <div class="row">
-                <div class="col-12">
-                  <form method="POST">
-                    <button id="record" type="submit">
-                      <span><i class="fa-solid fa-microphone-lines"></i></span>
-                      Start Recording
-                    </button>
-                  </form>
+              <form method="POST">
+                <button id="record" type="submit">
+                  <span><i class="fa-solid fa-microphone-lines"></i></span>
+                  Start Recording
+                </button>
+              </form>
+
+              <!-- محتوى النص والكلمات المفتاحية -->
+              {% if original_text %}
+                <div class="content-box">
+                  <h5>Text:</h5>
+                  <p>{{ original_text }}</p>
+
+                  <h5>Key words:</h5>
+                  <ul>
+                    {% for word in words %}
+                      <li>{{ word }}</li>
+                    {% endfor %}
+                  </ul>
                 </div>
-              </div>
+              {% endif %}
             </div>
           </div>
 
           <div class="col-md">
             <div class="mainspeechbox">
-              <h4>Output</h4>
-              {% if original_text %}
-                <h5>Text:</h5>
-                <p>{{ original_text }}</p>
-
-                <h5>Split Text:</h5>
-                <ul>
-                  {% for word in words %}
-                    <li>{{ word }}</li>
-                  {% endfor %}
-                </ul>
-              {% endif %}
+              <h4>ASL</h4>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- End speechrecord -->
 
-    <!-- Start footer -->
     <footer>
       <div class="container">
         <p>All Rights Are Reserved &copy;</p>
       </div>
     </footer>
-    <!-- End footer -->
 
-    <!-- JS Files -->
     <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/all.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
