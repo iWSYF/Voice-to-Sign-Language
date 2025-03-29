@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.multiRootWorkspaceName": "VTSL_APP"
+    "liveServer.settings.multiRootWorkspaceName": "VTSL_APP",
+    "liveServer.settings.port": 5501
 }

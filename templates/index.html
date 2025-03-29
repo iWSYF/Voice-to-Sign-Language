@@ -11,8 +11,43 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css.map') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}" />
+    <style>
+      /* تعديل خاص لتوسيط الزر ومحاذاة النص */
+      .speechrecord .mainspeechbox {
+        padding: 20px;
+        text-align: left;
+        height: auto;
+        border-radius: 20px;
+        box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #dddd;
+        transition: var(--main-transition);
+      }
+      .speechrecord .mainspeechbox .btn-wrapper {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body>
+    <style>
+      .speechrecord .mainspeechbox {
+        padding: 20px;
+        text-align: left;
+        height: 390px;
+        border-radius: 20px;
+        box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #dddd;
+        transition: var(--main-transition);
+      }
+    
+      .speechrecord .mainspeechbox h4 {
+        text-align: center; /* توسيط عنوان الصندوق */
+      }
+    
+      .speechrecord .mainspeechbox .btn-wrapper {
+        text-align: center;
+        margin-top: 20px;
+      }
+    </style>
+    
     <header id="header" class="header">
       <div class="container">
         <div class="row">
@@ -46,26 +81,29 @@
         <div class="row">
           <div class="col-md">
             <div class="mainspeechbox">
-              <h4>Speech to Text</h4>
-              <form method="POST">
-                <button id="record" type="submit">
-                  <span><i class="fa-solid fa-microphone-lines"></i></span>
-                  Start Recording
-                </button>
-              </form>
+              <h4>Convert Your voice into ASL</h4>
+              
+              <!-- الزر الآن داخل div لتوسيطه -->
+              <div class="btn-wrapper">
+                <form method="POST">
+                  <button id="record" type="submit">
+                    <span><i class="fa-solid fa-microphone-lines"></i></span>
+                    Start Recording
+                  </button>
+                </form>
+              </div>
 
-              <!-- محتوى النص والكلمات المفتاحية -->
               {% if original_text %}
                 <div class="content-box">
-                  <h5>Text:</h5>
+                  <h5>You said:</h5>
                   <p>{{ original_text }}</p>
 
                   <h5>Key words:</h5>
-                  <ul>
+                  <p>
                     {% for word in words %}
-                      <li>{{ word }}</li>
+                      {{ word }}{% if not loop.last %} - {% endif %}
                     {% endfor %}
-                  </ul>
+                  </p>                  
                 </div>
               {% endif %}
             </div>
@@ -74,6 +112,39 @@
           <div class="col-md">
             <div class="mainspeechbox">
               <h4>ASL</h4>
+          
+            {% if images %}
+              <div class="content-box" style="margin-top: 20px; text-align: center;">
+                <img id="asl-slideshow" src="{{ url_for('static', filename=images[0]) }}"
+                  alt="ASL Image"
+                  style="width: 120px; max-width: 100%; height: auto; border-radius: 10px;" />
+              </div>
+
+              <script>
+                const images = [
+                  {% for image in images %}
+                    "{{ url_for('static', filename=image) }}"{% if not loop.last %},{% endif %}
+                  {% endfor %}
+                ];
+
+                let index = 0;
+                const imgElement = document.getElementById("asl-slideshow");
+
+                const slideshow = setInterval(() => {
+                  index += 1;
+
+                  if (index >= images.length) {
+                    // خلصنا الصور – نوقف التايمر ونخفي الصورة
+                    clearInterval(slideshow);
+                    imgElement.style.display = "none";
+                  } else {
+                  imgElement.src = images[index];
+                  }
+                }, 2500); // كل 2.5 ثانية
+              </script>
+            {% endif %}
+
+          
             </div>
           </div>
         </div>

@@ -1,168 +1,221 @@
-/* Start Global Rules */
+/* -------------------------------- Start Global Rules --------------------------------*/
+/* تعيين قواعد عامة تطبق على كامل الموقع */
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box; /* للمتصفحات التي تستخدم Webkit: يجعل الحشو والحدود ضمن الحجم المحدد */
+  -moz-box-sizing: border-box;    /* لمتصفح Firefox: نفس الفكرة */
+  box-sizing: border-box;         /* القاعدة العامة: تجعل الحجم الكلي للعنصر يشمل البادينج والحدود */
 }
+
 :root {
-  --white: #ffffff;
-  --black: #000000;
-  --green: #73ac39;
-  --main-transition: 0.25s;
+  /* تعريف متغيرات CSS يمكن استخدامها لاحقاً */
+  --white: #ffffff;              /* اللون الأبيض */
+  --black: #000000;              /* اللون الأسود */
+  --green: #73ac39;              /* لون أخضر مخصص */
+  --main-transition: 0.25s;      /* مدة الانتقال الرئيسية */
 }
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 8px;                    /* عرض شريط التمرير في المتصفحات التي تدعم Webkit */
 }
+
 ::-webkit-scrollbar-track {
-  background-color: var(--black);
+  background-color: var(--black); /* خلفية مسار شريط التمرير */
 }
+
 ::-webkit-scrollbar-thumb {
-  background-color: var(--green);
+  background-color: var(--green); /* لون الجزء المتحرك من شريط التمرير */
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--green);
+  background-color: var(--green); /* نفس اللون عند المرور عليه */
 }
+
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth;       /* يجعل التمرير سلساً عند التنقل للروابط */
 }
+
 body {
-  font-family: "Cairo", sans-serif;
+  font-family: "Cairo", sans-serif; /* تعيين الخط الرئيسي للموقع */
 }
+
 a {
-  text-decoration: none;
+  text-decoration: none;         /* إزالة الخط السفلي من الروابط */
 }
+
 ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  list-style: none;              /* إزالة الرموز النقطية من القوائم */
+  margin: 0;                     /* إزالة الهامش الافتراضي */
+  padding: 0;                    /* إزالة الحشو الافتراضي */
 }
+
 .container {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
+  padding-left: 15px;            /* حشو من اليسار */
+  padding-right: 15px;           /* حشو من اليمين */
+  margin-left: auto;             /* توسيط العنصر أفقياً */
   margin-right: auto;
 }
 
+/* زر رئيسي مخصص */
 .mainbtn {
-  display: inline-block;
-  color: var(--black);
-  background-color: var(--green);
-  border: 1px solid var(--black);
-  padding: 7px 30px;
-  transition: var(--main-transition);
-  position: relative;
-  z-index: 999;
+  display: inline-block;               /* جعل الزر يظهر بشكل خطي */
+  color: var(--black);                 /* لون النص */
+  background-color: var(--green);      /* خلفية الزر */
+  border: 1px solid var(--black);      /* إطار الزر */
+  padding: 7px 30px;                   /* حشو داخلي */
+  transition: var(--main-transition);  /* حركة انتقالية ناعمة */
+  position: relative;                  /* لتمكين التلاعب بالمحتوى الداخلي مثل ::after */
+  z-index: 999;                        /* لتأكيد الظهور فوق العناصر الأخرى */
 }
+
+/* تأثير خلفي يظهر عند تمرير الماوس */
 .mainbtn::after {
-  content: " ";
+  content: " ";                         /* محتوى فارغ للعنصر */
   display: block;
-  width: 0%;
+  width: 0%;                            /* يبدأ من عرض صفر */
   height: 100%;
-  position: absolute;
+  position: absolute;                   /* يتموضع بالنسبة للزر */
   top: 0px;
   left: 0px;
-  background-color: var(--white);
-  z-index: -1;
-  transition: all 1s ease-in-out;
+  background-color: var(--white);      /* خلفية بيضاء */
+  z-index: -1;                          /* يظهر خلف الزر */
+  transition: all 1s ease-in-out;      /* انتقال سلس على جميع الخصائص */
 }
+
+/* عند تمرير الماوس، يتوسع تأثير ::after ليملأ الزر */
 .mainbtn:hover::after {
   width: 100%;
 }
+
 .mainbtn span {
-  margin-left: 10px;
+  margin-left: 10px;                   /* مسافة بين الأيقونة والنص مثلاً */
 }
 
+/* قسم الشعار */
 .uplogo {
-  text-align: center;
-  padding: 30px 0px;
+  text-align: center;                  /* توسيط المحتوى */
+  padding: 30px 0px;                   /* حشو رأسي */
 }
+
 .uplogo img {
-  height: 200px !important;
-  width: auto !important;
+  height: 200px !important;            /* ارتفاع ثابت للصورة */
+  width: auto !important;              /* عرض تلقائي يتناسب مع الارتفاع */
 }
+
 /* media query  */
+/* تهيئة حجم الـ container حسب حجم الشاشة */
+
 @media (max-width: 320px) {
   .container {
-    max-width: 300px !important;
+      max-width: 300px !important;
   }
 }
+
 @media (min-width: 360px) {
   .container {
-    max-width: 340px !important;
+      max-width: 340px !important;
   }
 }
+
 @media (min-width: 410px) {
   .container {
-    max-width: 390px !important;
+      max-width: 390px !important;
   }
 }
+
 @media (min-width: 576px) {
   .container {
-    max-width: 540px !important;
+      max-width: 540px !important;
   }
 }
+
 @media (min-width: 769px) {
   .container {
-    max-width: 720px !important;
+      max-width: 720px !important;
   }
 }
+
 @media (min-width: 992px) {
   .container {
-    max-width: 960px !important;
+      max-width: 960px !important;
   }
 }
+
 @media (min-width: 1200px) {
   .container {
-    max-width: 1170px !important;
+      max-width: 1170px !important;
   }
 }
-/* End @media */
 
-/* End Global Rules */
+/* -------------------------------------------------- End @media --------------------------  */
 
-/* Start header */
+
+/* ------------------------------------------------- Start header ---------------- */
+/* تنسيق رأس الصفحة (الهيدر) */
+
 .header {
-  background-color: var(--second-color);
-  border-bottom: 1px solid #ddd;
-  transition: all 0.35s ease-in-out;
+  background-color: var(--second-color); /* خلفية الهيدر بلون محدد من المتغيرات */
+  transition: all 0.35s ease-in-out;     /* تأثير انتقالي سلس عند تغيير الخصائص */
 }
+
 .header .container {
-  padding: 0px 10px;
+  padding: 0px 10px;                     /* حشو أفقي للداخل */
 }
+
+.header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 50%; /* 👈 تحكم في الطول (جرب 60%-80%) */
+  margin: 0 auto; /* توسيط الخط */
+  background-color: #889686;
+}
+
 .header .container > .row > div {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-content: center;
-  justify-content: left;
-  align-items: center;
+  display: flex;                         /* استخدام Flexbox لترتيب العناصر */
+  flex-wrap: wrap;                       /* السماح بانفصال العناصر إذا تجاوزت العرض */
+  flex-direction: row;                   /* الاتجاه أفقي للعناصر */
+  align-content: center;                 /* محاذاة المحتوى داخل الصندوق */
+  justify-content: left;                /* محاذاة العناصر إلى اليسار */
+  align-items: center;                   /* محاذاة العناصر عموديًا بالوسط */
 }
+
+/* العنصر الثاني داخل .row سيتم محاذاته في المنتصف */
 .header .container > .row > div:nth-of-type(2) {
   justify-content: center;
 }
+
+/* العنصر الأخير داخل .row سيتم محاذاته لليمين */
 .header .container > .row > div:last-of-type {
   justify-content: right;
 }
+
+/* تنسيق صورة الشعار */
 .header .linklogo img {
   height: 100px;
 }
+
+/* زر القائمة (menu button) يظهر في الشاشات الصغيرة */
 .header .menubtn {
-  border-radius: 5px;
-  color: var(--second-color);
-  background-color: var(--main-color);
+  border-radius: 5px;                   /* زوايا دائرية */
+  color: var(--second-color);          /* لون الأيقونة */
+  background-color: var(--main-color); /* خلفية الزر */
   width: 40px;
   height: 40px;
-  font-size: 25px;
+  font-size: 25px;                     /* حجم الأيقونة */
   text-align: center;
-  line-height: 40px;
+  line-height: 40px;                   /* لجعل الأيقونة بالوسط عموديًا */
   position: absolute;
-  right: 20px;
-  cursor: pointer;
-  display: none;
+  right: 20px;                         /* محاذاة إلى اليمين */
+  cursor: pointer;                    /* تغيير شكل المؤشر عند التمرير */
+  display: none;                      /* لا يظهر بشكل افتراضي */
 }
+
+/* تنسيق عناصر القائمة داخل الهيدر */
 .header ul li {
-  display: inline-block;
+  display: inline-block;              /* عرض أفقي لكل عنصر */
 }
+
+/* تنسيق روابط القائمة */
 .header ul li a {
   margin-right: 15px;
   padding: 5px 8px;
@@ -170,243 +223,372 @@ ul {
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  font-weight: bold;
-  transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;  /* تأثير سلس عند التمرير */
 }
 
+/* تأثير خط سفلي متدرج يظهر عند تمرير الماوس */
 .header ul li a::after {
   content: " ";
-  width: 0%;
+  width: 0%;                          /* يبدأ بدون عرض */
   height: 4px;
   border-radius: 4px;
-  background-image: linear-gradient(
-    to right,
-    #ffffff,
-    #e8edf4,
-    #c9dde6,
-    #abced0,
-    #96beb1,
-    #96beb1,
-    #96beb1,
-    #96beb1,
-    #abced0,
-    #c9dde6,
-    #e8edf4,
-    #ffffff
+  background-image: linear-gradient(  /* تدرج لوني أنيق */
+      to right,
+      #ffffff,
+      #e8edf4,
+      #c9dde6,
+      #abced0,
+      #96beb1,
+      #96beb1,
+      #96beb1,
+      #96beb1,
+      #abced0,
+      #c9dde6,
+      #e8edf4,
+      #ffffff
   );
   display: block;
   position: absolute;
   bottom: 0px;
   transition: all 0.35s ease-in-out;
 }
+
+/* عند المرور على الرابط، يتغير لونه */
 .header ul li a:hover {
   color: var(--yellow-color);
 }
+
+/* ويمتد الخط السفلي بشكل كامل */
 .header ul li a:hover::after {
   width: 100%;
 }
+
+/* روابط أيقونات التواصل الاجتماعي */
 .header .upsocial a {
   color: var(--black-color);
 }
+
+/* تنسيق شكل أيقونات التواصل */
 .header .upsocial span {
   display: inline-block;
   width: 30px;
   height: 30px;
   text-align: center;
   line-height: 30px;
-  transition: var(--main-transition);
+  transition: var(--main-transition); /* تأثير عند التحويل */
 }
+
+/* إضافة خط فاصل بين الأيقونات ماعدا الأخيرة */
 .header .upsocial a:not(:last-of-type) span {
   border-left: 1px solid #ddd;
 }
+
+/* تغيير لون الأيقونات عند التمرير */
 .header .upsocial a:hover {
   color: var(--yellow-color);
 }
+
+/* ---------------- responsive (شاشات صغيرة) ---------------- */
 @media (max-width: 769px) {
   .header .container > .row > div {
-    justify-content: center;
+      justify-content: center;        /* جعل العناصر في الوسط */
   }
+
   .header .container > .row > div:first-of-type {
-    justify-content: left;
+      justify-content: left;          /* العنصر الأول يظل إلى اليسار */
   }
+
   .header .linklogo img {
-    height: 80px;
+      height: 80px;                   /* تصغير شعار الموقع */
   }
+
   .header ul li {
-    display: block;
-    text-align: center;
-    padding: 7px;
+      display: block;                 /* جعل القائمة عمودية */
+      text-align: center;
+      padding: 7px;
   }
+
   .header ul li a {
-    margin-right: 0px;
+      margin-right: 0px;              /* إلغاء المسافة الجانبية */
   }
+
   .header .container > .row > div:last-of-type {
-    justify-content: center;
-    text-align: center;
+      justify-content: center;
+      text-align: center;
   }
+
   .header .menubtn {
-    display: block;
+      display: block;                 /* إظهار زر القائمة */
   }
+
   .header ul {
-    display: none;
+      display: none;                  /* إخفاء القائمة الرئيسية */
   }
+
   .header .btnheader {
-    display: none;
-    border-top: 1px solid #ddd;
+      display: none;                  /* إخفاء زر إضافي (إن وُجد) */
+      border-top: 1px solid #ddd;
   }
 }
+
+/* ---------------- شاشات متوسطة ---------------- */
 @media (min-width: 770px) and (max-width: 992px) {
   .header .linklogo img {
-    height: 50px;
+      height: 50px;                   /* تصغير الشعار أكثر */
   }
+
   .header ul li a {
-    margin-right: 0px;
+      margin-right: 0px;
+      margin-left: 5px;
+      font-size: 14px;                /* تصغير الخط */
   }
+
   .header .container > .row > div {
-    padding: 0px;
-  }
-  .header ul li a {
-    margin-left: 5px;
-    font-size: 14px;
+      padding: 0px;
   }
 }
+
+/* ---------------- شاشات كبيرة ---------------- */
 @media (min-width: 993px) and (max-width: 1199px) {
   .header ul li a {
-    margin-right: 10px;
+      margin-right: 10px;             /* تقليل المسافة بين الروابط */
   }
 }
-/* End header */
 
-/* Start speechrecord */
+/* ------------------------------------------------------------ End header ---------------- */
+
+
+/* ----------------------------------------------------------- Start speechrecord --------------------- */
+/* تنسيقات مخصصة لقسم تسجيل الصوت */
+
 .speechrecord .container {
-  padding: 0px 0px 100px 0px;
+  padding: 0px 0px 350px 0px; /* حشو سفلي كبير لإتاحة مساحة أسفل المحتوى */
 }
+
+.speechrecord .mainspeechbox .content-box {
+  margin-top: 30px;
+  text-align: left; /* <== تعديل لتغيير محاذاة النص إلى اليسار */
+}
+
 .speechrecord .row > div {
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* مسافة بين العناصر الرأسية */
 }
+
 .speechrecord .mainspeechbox {
   padding: 20px;
-  text-align: center;
-  height: 100%;
+  text-align: left;                     /* النص كله يصير يسار */
+  height: 390px;
   border-radius: 20px;
   box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #dddd;
   transition: var(--main-transition);
 }
+
+/* عنصر يغلف الزر عشان يبقى في المنتصف */
+.speechrecord .mainspeechbox .btn-wrapper {
+  text-align: center; /* يخلي الزر بالنص */
+  margin-top: 20px;
+}
+
+
+/* تأثير عند تمرير الماوس على صندوق الكلام */
 .speechrecord .mainspeechbox:hover {
   box-shadow: 1px 1px 2px var(--green), -1px -1px 2px var(--green);
 }
+
 .speechrecord .mainspeechbox h4 {
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* مسافة بين العنوان والمحتوى */
 }
+
 .speechrecord .mainspeechbox button {
-  background-color: var(--green);
+  background-color: var(--green);      /* خلفية خضراء */
   border: 1px solid var(--green);
-  padding: 7px 20px;
+  padding: 7px 20px;                   /* حجم الزر */
   font-size: 16px;
-  color: var(--black);
+  color: var(--black);                 /* لون النص */
   border-radius: 5px;
-  transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;   /* تأثير عند التغيير */
 }
+
+/* تأثير الزر عند التمرير */
 .speechrecord .mainspeechbox button:hover {
   background-color: var(--black);
-  color: var(--green);
+  color: var(--green);                 /* تغيير الألوان عند التمرير */
 }
+
 .speechrecord .mainspeechbox button span {
-  margin-right: 10px;
+  margin-right: 10px;                  /* مسافة بين الأيقونة والنص */
   font-size: 20px;
 }
+
 .speechrecord .mainspeechbox form textarea {
   box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #dddd;
   width: 100%;
   padding: 10px;
   border-radius: 5px;
-  outline: 1px solid #ddd;
+  outline: 1px solid #ddd;             /* خط خارجي خفيف */
 }
+
+/* عند التركيز على حقل الكتابة */
 .speechrecord .mainspeechbox form textarea:focus {
-  outline: 1px solid var(--green);
+  outline: 1px solid var(--green);     /* يصبح الإطار أخضر */
 }
+
+/* إخفاء زر الإيقاف (stop) بشكل افتراضي */
 .speechrecord #stop {
   display: none;
 }
+
+/* تنسيق صندوق عرض المحتوى المستخرج من الصوت */
+.speechrecord .mainspeechbox .content-box {
+  margin-top: 30px;
+  text-align: left; /* محاذاة النص إلى اليسار */
+}
+
+/* تنسيق العنوان الثانوي */
+.speechrecord .mainspeechbox h5 {
+  margin-top: 20px;
+  font-size: 18px;
+  color: var(--black);
+}
+
+/* تنسيق الفقرات */
+.speechrecord .mainspeechbox p {
+  font-size: 16px;
+  color: var(--black);
+}
+
+/* تنسيق قائمة الكلمات المفتاحية أو النتائج */
+.speechrecord .mainspeechbox ul {
+  text-align: left;
+  padding-left: 20px; /* مسافة لليسار لعرض نقاط القائمة */
+}
+
+.speechrecord .mainspeechbox ul li {
+  font-size: 16px;
+  color: var(--black);
+}
+
+/* --------------------- Media Queries --------------------- */
+
+/* شاشات الجوال الصغيرة */
 @media (max-width: 576px) {
   .speechrecord .container {
-    padding: 50px 0px 50px 0px;
+      padding: 50px 0px 50px 0px; /* تقليل الحشو العلوي والسفلي */
   }
+
   .speechrecord .mainspeechbox .row > div {
-    padding: 0px 3px;
+      padding: 0px 3px; /* تقليل المسافات الجانبية بين العناصر */
   }
+
   .speechrecord .mainspeechbox button span {
-    margin-right: 5px;
+      margin-right: 5px; /* تقليل المسافة بين الأيقونة والنص */
   }
+
   .speechrecord .mainspeechbox button {
-    padding: 7px;
+      padding: 7px; /* تصغير الزر */
   }
 }
+
+/* الشاشات المتوسطة (تابلت مثلاً) */
 @media (min-width: 577px) and (max-width: 769px) {
+  /* لا يوجد تنسيق خاص هنا، يمكن إضافته لاحقاً حسب الحاجة */
 }
+
+/* شاشات اللابتوب الصغيرة */
 @media (min-width: 770px) and (max-width: 992px) {
   .speechrecord .mainspeechbox .row > div {
-    padding: 0px 3px;
+      padding: 0px 3px; /* تقليل الفراغات بين الأعمدة */
   }
+
   .speechrecord .mainspeechbox button span {
-    margin-right: 5px;
+      margin-right: 5px;
   }
+
   .speechrecord .mainspeechbox button {
-    padding: 7px;
+      padding: 7px;
   }
 }
+
+/* الشاشات المتوسطة الكبيرة */
 @media (min-width: 993px) and (max-width: 1199px) {
+  /* لا يوجد تنسيقات خاصة لهذه الفئة حالياً */
 }
-/* End speechrecord */
+
+/* ------------------------------------------------------------------------ End speechrecord --------------------- */
+
 
 /* Start about */
+/* تنسيقات لقسم "حول" (About) */
+
 .about .container {
-  padding: 0px 0px 50px 0px;
+  padding: 0px 0px 50px 0px; /* حشو سفلي فقط */
 }
+
 .about .row > div {
-  margin-bottom: 30px;
+  margin-bottom: 30px; /* مسافة بين الأعمدة */
 }
+
 .about p {
-  color: gray;
-  padding-right: 100px;
-  line-height: 2.5;
+  color: gray;               /* لون النص رمادي */
+  padding-right: 100px;      /* حشو من جهة اليمين */
+  line-height: 2.5;          /* ارتفاع السطر لسهولة القراءة */
   font-size: 15px;
 }
+
 .about img {
-  border-radius: 10px;
-  width: 100%;
+  border-radius: 10px;       /* زوايا مستديرة للصورة */
+  width: 100%;               /* تجعل الصورة تأخذ كامل عرض الحاوية */
 }
+
+/* شاشات صغيرة: تقليل حجم الخط وإلغاء الحشو */
 @media (max-width: 576px) {
   .about p {
-    font-size: 14px;
-    padding-right: 0px;
+      font-size: 14px;
+      padding-right: 0px;
   }
 }
+
+/* شاشات بين 577px و 769px */
 @media (min-width: 577px) and (max-width: 769px) {
   .about p {
-    font-size: 14px;
-    padding-right: 0px;
+      font-size: 14px;
+      padding-right: 0px;
   }
 }
+
+/* شاشات بين 770px و 992px */
 @media (min-width: 770px) and (max-width: 992px) {
   .about p {
-    font-size: 14px;
-    padding-right: 0px;
+      font-size: 14px;
+      padding-right: 0px;
   }
 }
+
+/* شاشات بين 993px و 1199px */
 @media (min-width: 993px) and (max-width: 1199px) {
+  /* لا يوجد تعديل هنا حاليًا */
 }
 /* End about */
-
 /* Start footer */
+/* تنسيقات الفوتر (الجزء السفلي من الصفحة) */
+
 footer {
+  /* لا يوجد تنسيقات هنا الآن، يمكن الإضافة لاحقاً */
 }
+
 footer .container {
-  border-top: 1px solid #ddd;
-  padding: 20px 0px;
+  border-top: 1px solid #ddd; /* خط علوي رمادي للفصل */
+  padding: 20px 0px;          /* حشو علوي وسفلي */
 }
+
 footer p {
-  text-align: center;
-  margin-bottom: 0px;
+  text-align: center;         /* توسيط النص */
+  margin-bottom: 0px;         /* إزالة المسافة السفلية */
+}
+/* تحسينات خاصة بعرض المحتوى داخل قسم تسجيل الصوت */
+.speechrecord .mainspeechbox .content-box h5,
+.speechrecord .mainspeechbox .content-box p {
+  text-align: left !important; /* فرض محاذاة لليسار */
+  display: block;              /* تأكد من عرض العناصر بشكل بلوك */
 }
 /* End footer */
