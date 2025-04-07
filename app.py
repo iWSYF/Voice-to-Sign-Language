@@ -65,11 +65,12 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    model = Model(r"C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.22")
+    model = Model(r"C:\Users\Wail Mawa\Desktop\vosk-model-en-us-0.22")
       # Path to the Vosk model
       # C:\Users\PC\Downloads\vosk-model-small-en-us-0.15 - EYAD 
       # C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.42-gigaspeech - Wail
       # C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.22
+
       
     recognizer = KaldiRecognizer(model, 44100)  
 

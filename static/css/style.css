@@ -165,7 +165,7 @@ ul {
   content: "";
   display: block;
   height: 1px;
-  width: 50%; /* 👈 تحكم في الطول (جرب 60%-80%) */
+  width: 100%; /* 👈 تحكم في الطول (جرب 60%-80%) */
   margin: 0 auto; /* توسيط الخط */
   background-color: #889686;
 }
