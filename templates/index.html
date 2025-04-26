@@ -20,11 +20,9 @@
         box-shadow: 1px 1px 2px #ddd, -1px -1px 2px #dddd;
         transition: var(--main-transition);
       }
-
       .speechrecord .mainspeechbox h4 {
         text-align: center;
       }
-
       .speechrecord .mainspeechbox .btn-wrapper {
         text-align: center;
         margin-top: 20px;
@@ -67,7 +65,6 @@
             <div class="mainspeechbox">
               <h4>Convert Your voice into ASL</h4>
 
-              <!-- الزر داخل الفورم -->
               <div class="btn-wrapper">
                 <form id="recordForm">
                   <button id="recordBtn" type="submit">
@@ -99,31 +96,40 @@
 
               {% if images %}
                 <div class="content-box" style="margin-top: 20px; text-align: center;">
-                  <img id="asl-slideshow" src="{{ url_for('static', filename=images[0]) }}"
-                    alt="ASL Image"
-                    style="width: 500px; max-width: 100%; height: auto; border-radius: 10px;" />
+                  <img id="asl-slideshow"
+                       data-images='[
+                        {% for image in images %}
+                          "{{ url_for('static', filename=image) }}"{% if not loop.last %},{% endif %}
+                        {% endfor %}
+                       ]'
+                       src="{{ url_for('static', filename=images[0]) }}"
+                       alt="ASL Image"
+                       style="width: 500px; max-width: 100%; height: auto; border-radius: 10px;" />
                 </div>
 
                 <script>
-                  const images = [
-                    {% for image in images %}
-                      "{{ url_for('static', filename=image) }}"{% if not loop.last %},{% endif %}
-                    {% endfor %}
-                  ];
+                  window.addEventListener("load", () => {
+                    const imgElement = document.getElementById("asl-slideshow");
+                    const images = JSON.parse(imgElement.getAttribute("data-images"));
+                    let index = 0;
 
-                  let index = 0;
-                  const imgElement = document.getElementById("asl-slideshow");
-
-                  const slideshow = setInterval(() => {
-                    index += 1;
-
-                    if (index >= images.length) {
-                      clearInterval(slideshow);
-                      imgElement.style.display = "none";
-                    } else {
-                      imgElement.src = images[index];
+                    // نوقف أي عرض سابق شغال
+                    if (window.slideshowInterval) {
+                      clearInterval(window.slideshowInterval);
                     }
-                  }, 2500);
+
+                    // نبدأ عرض جديد
+                    window.slideshowInterval = setInterval(() => {
+                      index += 1;
+
+                      if (index >= images.length) {
+                        clearInterval(window.slideshowInterval);
+                        imgElement.style.display = "none"; // لما تخلص الصور يخفي الصورة
+                      } else {
+                        imgElement.src = images[index];
+                      }
+                    }, 2500); // كل 2.5 ثانية ينتقل للصورة اللي بعدها
+                  });
                 </script>
               {% endif %}
             </div>

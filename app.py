@@ -30,7 +30,7 @@ def home():
     images_to_show = []
 
     if request.method == 'POST':
-        for _ in range(0, int(44100 / 1024 * 2)):  # Recording for 5 seconds
+        for _ in range(0, int(44100 / 1024 * 5)):  # Recording for 5 seconds
             data = stream.read(1024) 
             if recognizer.AcceptWaveform(data):  
                 result = json.loads(recognizer.Result())  
