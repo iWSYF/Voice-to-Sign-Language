@@ -19,7 +19,7 @@ stop_this_words = [
     "and", "but", "or", "nor", "yet", "so", "i'm", "you're", "he's", "she's", "it's", "we're", "they're",
     "i've", "you've", "we've", "they've","i'll", "you'll", "he'll", "she'll", "we'll", "they'll",
     "i'd", "you'd", "he'd", "she'd", "we'd", "they'd","isn't", "aren't", "wasn't", "weren't",
-    "hasn't", "haven't", "hadn't","might've", "must've", "could've", "should've", "would've" 
+    "hasn't", "haven't", "hadn't","might've", "must've", "could've", "should've", "would've", "i" "I"
 ]
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,7 +30,7 @@ def home():
     images_to_show = []
 
     if request.method == 'POST':
-        for _ in range(0, int(44100 / 1024 * 5)):  # Recording for 5 seconds
+        for _ in range(0, int(44100 / 1024 * 2)):  # Recording for 5 seconds
             data = stream.read(1024) 
             if recognizer.AcceptWaveform(data):  
                 result = json.loads(recognizer.Result())  
@@ -65,7 +65,7 @@ def about():
     return render_template('about.html')
 
 if __name__ == '__main__':
-    model = Model(r"C:\Users\Wail Mawa\Desktop\vosk-model-en-us-0.22")
+    model = Model(r"C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.22")
       # Path to the Vosk model
       # C:\Users\PC\Downloads\vosk-model-small-en-us-0.15 - EYAD 
       # C:\Users\wsyf9\OneDrive\Desktop\vosk-model-en-us-0.42-gigaspeech - Wail
@@ -77,4 +77,4 @@ if __name__ == '__main__':
     p = pyaudio.PyAudio()  
     stream = p.open(format=pyaudio.paInt16, channels=1, rate=44100, input=True, frames_per_buffer=1024)  
 
-    app.run(debug=True, use_reloader=False) 
+    app.run(debug=True, use_reloader=False)
