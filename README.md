@@ -1,6 +1,7 @@
-# Talk to Me 🤟
+# voice-to-sign-language 🤟
 
-(Talk to Me)** is a web application designed to bridge the communication gap with deaf individuals by converting **voice to sign language** and **sign language to voice** in real time.
+**voice-to-sign-language** is a web application designed to bridge the communication gap with deaf individuals by converting **voice to sign language** and **sign language to voice** in real time.
+
 ---
 
 ## 🚀 Features
@@ -21,9 +22,9 @@
 
 ## 🧠 Technologies Used
 
-- **Python (بايثون)** – Backend logic  
-- **Flask (فلاسْك)** – Web framework  
-- **Vosk (فوسك)** – Offline speech recognition engine  
+- **Python** – Backend logic  
+- **Flask** – Web framework  
+- **Vosk** – Offline speech recognition engine  
 - **HTML, CSS, JavaScript** – Frontend interface  
 - **JSON** – Data exchange format  
-- **Bootstrap** – Responsive layout and design  
+- **Bootstrap** – Responsive layout and design
